@@ -1,0 +1,23 @@
+{% extends 'portfolio/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+    <div class="container text-center">
+        <h1>Блог</h1>
+        <h2>Кара написала {{ blogs.count }} пост</h2>
+    </div>
+
+        {% for blog in blogs %}
+            <div class="container text-left">
+                <a href="{% url 'blog:detail' blog.pk %}"><h2>{{ blog.title }}</h2></a>
+                <p>{{ blog.date |date:'M d Y'| upper }}</p>
+                <p>{{ blog.description|striptags|truncatechars:100 }}</p>
+            </div>
+        {% endfor %}
+
+{% endblock %}
+
+
